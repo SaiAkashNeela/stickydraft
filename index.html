@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- Core SEO Meta Tags -->
+    <title>StickyDraft - Free Sticky Notes App | Instant Note Taking</title>
+    <meta name="description" content="StickyDraft is a free, instant sticky notes app. No signup, no login, no setup. Write, organize, and manage your notes instantly in your browser. Perfect for quick reminders, to-dos, and ideas.">
+    <meta name="keywords" content="sticky notes, note taking app, free notes, instant notes, browser notes, to-do list, quick notes">
+    <meta name="author" content="StickyDraft">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://stickydraft.com/">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stickydraft.com/">
+    <meta property="og:title" content="StickyDraft - Free Sticky Notes App">
+    <meta property="og:description" content="Instant sticky notes in the browser. No signup, no setup. Just write.">
+    <meta property="og:image" content="https://stickydraft.com/logo.png">
+    <meta property="og:site_name" content="StickyDraft">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://stickydraft.com/">
+    <meta name="twitter:title" content="StickyDraft - Free Sticky Notes App">
+    <meta name="twitter:description" content="Instant sticky notes in the browser. No signup, no setup. Just write.">
+    <meta name="twitter:image" content="https://stickydraft.com/logo.png">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#F3F4F6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="StickyDraft">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebApplication",
+      "name": "StickyDraft",
+      "description": "Instant sticky notes in the browser. No signup, no setup. Just write.",
+      "url": "https://stickydraft.com",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "StickyDraft"
+      },
+      "image": "https://stickydraft.com/logo.png",
+      "features": [
+        "Instant note creation",
+        "No signup required",
+        "Local storage",
+        "Colorful notes",
+        "Multiple boards"
+      ]
+    }
+    </script>
+</head>
+
+<body>
+    <div class="app-background-brand" aria-hidden="true">
+        <h1>StickyDraft</h1>
+        <p>Open. Write. Done.</p>
+        <p class="sub-caption">Tap anywhere to start writing.</p>
+    </div>
+
+    <div class="app-container">
+        <!-- Navigation/Tab Bar -->
+        <nav id="tab-bar" class="tab-bar" role="navigation" aria-label="Board navigation">
+            <div class="brand">
+                <img src="logo.png" alt="StickyDraft Logo" class="app-logo">
+                <span class="app-name">StickyDraft</span>
+            </div>
+            <div id="tabs-container" class="tabs-scroll-area" role="tablist" aria-label="Open boards">
+                <!-- Tabs injected here -->
+            </div>
+            
+            <button id="add-tab-btn" class="add-tab-btn" title="Create new board" aria-label="Add new board">
+                <i class="ph ph-plus" aria-hidden="true"></i>
+            </button>
+
+            <a href="https://github.com/SaiAkashNeela/stickydraft.com" target="_blank" rel="noopener noreferrer" class="theme-toggle" title="View on GitHub - Open Source" aria-label="StickyDraft on GitHub">
+                <i class="ph ph-github-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="theme-toggle donate-btn" title="Support the project" aria-label="Donate to support StickyDraft">
+                <i class="ph ph-heart" aria-hidden="true"></i>
+            </a>
+            <button id="help-toggle" class="theme-toggle" title="Help & Info">
+                <i class="ph ph-question"></i>
+            </button>
+            <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light theme" aria-label="Toggle theme">
+                <i class="ph ph-moon" aria-hidden="true"></i>
+            </button>
+        </nav>
+
+        <main id="board" class="board" role="main" aria-label="Note board">
+            <!-- Notes will be injected here -->
+        </main>
+
+        <!-- Custom Context Menu -->
+        <div id="context-menu" class="context-menu hidden" role="menu" aria-hidden="true">
+            <div class="ctx-item" data-action="new-note"><i class="ph ph-note"></i> New Draft</div>
+            <div class="ctx-item" data-action="help"><i class="ph ph-question"></i> Help / Info</div>
+            <div class="ctx-item" data-action="new-board"><i class="ph ph-plus-circle"></i> New Board</div>
+            <div class="ctx-item" data-action="theme"><i class="ph ph-moon"></i> Toggle Theme</div>
+            <div class="ctx-divider"></div>
+            <div class="ctx-footer">
+                Yo, want the boring browser menu?<br>Click the nav bar upstairs. 👆
+            </div>
+        </div>
+
+        <!-- Floating Action Buttons -->
+        <div class="fab-container">
+            <div class="fab-wrapper">
+                <button id="fab-sync" class="fab-btn fab-secondary fab-with-text" title="Click Me">
+                    <i class="ph ph-book-open"></i>
+                    <span>Click Me</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sync Modal -->
+        <div id="sync-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Sync My Drafts</h2>
+                    <button id="close-sync-modal" class="close-btn">
+                        <i class="ph ph-x"></i>
+                    </button>
+                </div>
+                <div class="modal-panes">
+                    <div class="sync-content">
+                        <p>Sign in to sync your drafts across devices and never lose your notes.</p>
+                        <div class="auth-buttons">
+                            <button class="auth-btn google-btn">
+                                <i class="ph ph-google-logo"></i> Continue with Google
+                            </button>
+                            <button class="auth-btn github-btn">
+                                <i class="ph ph-github-logo"></i> Continue with GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal modal-large hidden">
+            <div class="modal-content modal-content-large">
+                <div class="modal-header">
+                    <h2>Help & Info</h2>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <button id="clear-data-btn" class="clear-data-btn" title="Clear all data">
+                            <i class="ph ph-trash"></i> Clear Data
+                        </button>
+                        <button id="close-modal" class="close-btn">
+                            <i class="ph ph-x"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="getting-started">Getting Started</button>
+                    <button class="modal-tab" data-tab="faq">FAQs</button>
+                    <button class="modal-tab" data-tab="about">About</button>
+                    <button class="modal-tab" data-tab="contact">Contact</button>
+                    <button class="modal-tab" data-tab="terms">Terms</button>
+                    <button class="modal-tab" data-tab="privacy">Privacy</button>
+                </div>
+                <div class="modal-panes">
+                    <!-- Getting Started -->
+                    <div class="modal-pane active" id="pane-getting-started">
+                        <h3>Getting Started with StickyDraft</h3>
+                        <p>Welcome to StickyDraft – the fastest way to capture your thoughts. No signup, no clutter. Just open, write, done.</p>
+                        
+                        <h4>Creating Notes</h4>
+                        <ul>
+                            <li><strong>Click anywhere</strong> on the empty board to create a new note</li>
+                            <li>Use the <strong>+ button</strong> in the bottom-right corner</li>
+                            <li>Right-click and select <strong>"New Draft"</strong> from the context menu</li>
+                        </ul>
+
+                        <h4>Editing Your Notes</h4>
+                        <ul>
+                            <li>Add a <strong>title</strong> to keep notes organized</li>
+                            <li>Write freely in the <strong>content area</strong></li>
+                            <li>Use keyboard shortcuts for text formatting: <strong>Cmd+B</strong> for bold, <strong>Cmd+I</strong> for italic</li>
+                        </ul>
+
+                        <h4>Managing Notes</h4>
+                        <ul>
+                            <li><strong>Drag</strong> notes around to reposition them</li>
+                            <li><strong>Resize</strong> by dragging the corner</li>
+                            <li><strong>Click the menu button (⋯)</strong> to access options</li>
+                            <li><strong>Right-click</strong> on a note for quick actions</li>
+                        </ul>
+
+                        <h4>Multiple Boards</h4>
+                        <ul>
+                            <li>Create separate <strong>boards/tabs</strong> for different projects</li>
+                            <li><strong>Organize your work</strong> by category or context</li>
+                            <li>Switch between boards using the <strong>tab bar at the top</strong></li>
+                        </ul>
+
+                        <h4>Customization</h4>
+                        <ul>
+                            <li>Choose from <strong>6 beautiful colors</strong> for your notes</li>
+                            <li>Toggle <strong>dark mode</strong> with the moon icon</li>
+                            <li>Your preferences are <strong>saved automatically</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQs -->
+                    <div class="modal-pane" id="pane-faq">
+                        <h3>Frequently Asked Questions</h3>
+                        
+                        <details>
+                            <summary>Where are my notes saved?</summary>
+                            <p>Your notes are saved locally in your browser's storage. They never leave your device and are not sent to any server. This keeps your data private and lets you work offline.</p>
+                        </details>
+
+                        <details>
+                            <summary>Can I export my notes?</summary>
+                            <p>You can copy the content of your notes and paste it elsewhere. For full export features, check back soon – we're always improving!</p>
+                        </details>
+
+                        <details>
+                            <summary>What if I clear my browser data?</summary>
+                            <p>Clearing browser data (cache, cookies) will remove your notes. To keep them safe, regularly copy important notes or back them up manually.</p>
+                        </details>
+
+                        <details>
+                            <summary>Can I access my notes on another device?</summary>
+                            <p>Currently, notes are stored locally per device. We're exploring sync options. For now, you can copy/paste your notes to share them across devices.</p>
+                        </details>
+
+                        <details>
+                            <summary>Is StickyDraft free?</summary>
+                            <p>Yes! StickyDraft is completely free to use. No ads, no subscriptions, no strings attached. We believe in simple, open tools for creative minds.</p>
+                        </details>
+                    </div>
+
+                    <!-- About -->
+                    <div class="modal-pane" id="pane-about">
+                        <h3>About StickyDraft</h3>
+                        <p>Hey, I'm <strong>Akash</strong> 👋 – an indie hacker building tools that get out of your way.</p>
+                        
+                        <p>I created StickyDraft because I got tired of complex note-taking apps. Sometimes you just need to dump thoughts quickly, organize them on a canvas, and move on. No bloat. No login screens. No algorithms.</p>
+                        
+                        <h4>Why StickyDraft?</h4>
+                        <ul>
+                            <li>⚡ <strong>Instant:</strong> Open and start writing immediately</li>
+                            <li>🔒 <strong>Private:</strong> Your notes stay on your device</li>
+                            <li>🎨 <strong>Visual:</strong> Organize thoughts spatially like physical sticky notes</li>
+                            <li>🏗️ <strong>Simple:</strong> No unnecessary features, just pure functionality</li>
+                            <li>📖 <strong>Open:</strong> Built with web standards, made to be modified</li>
+                        </ul>
+                        
+                        <h4>What's Next?</h4>
+                        <p>I'm constantly improving StickyDraft. Future plans include device sync, collaborative boards, and plugins. Want to suggest a feature? Hit me up!</p>
+                        
+                        <h4>Open Source 🚀</h4>
+                        <p>StickyDraft is <strong>100% open source</strong> and free to use, modify, and contribute to. The entire codebase is available on GitHub for anyone to inspect, fork, or contribute improvements.</p>
+                        <p><a href="https://github.com/SaiAkashNeela/stickydraft.com" style="color: #2563EB; font-weight: 600; text-decoration: none;">View the source code on GitHub →</a></p>
+                        
+                        <p style="margin-top: 20px; padding: 12px; background: rgba(37, 99, 235, 0.1); border-radius: 6px;">
+                            <strong>Let's connect:</strong><br>
+                            📧 Email: <a href="mailto:akash@stickydraft.com" class="contact-email" style="text-decoration: none; font-weight: 600;">akash@stickydraft.com</a><br>
+                            ❌ X: <a href="https://x.com/TheSaiAkash" style="color: #2563EB; font-weight: 600; text-decoration: none;">@TheSaiAkash</a><br>
+                            🐙 GitHub: <a href="https://github.com/SaiAkashNeela" style="color: #2563EB; font-weight: 600; text-decoration: none;">@SaiAkashNeela</a>
+                        </p>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="modal-pane" id="pane-contact">
+                        <h3>Contact Me</h3>
+                        <p>Found a bug? Have an idea? Just want to say hi? Drop me a message!</p>
+                        
+                        <div style="margin-top: 24px; padding: 20px; background: rgba(37, 99, 235, 0.1); border-radius: 8px; text-align: center;">
+                            <p style="margin-bottom: 16px; font-size: 0.95rem;">Send me an email:</p>
+                            <a href="mailto:akash@stickydraft.com" style="display: inline-block; padding: 12px 24px; background: #2563EB; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+                                ✉️ Email Me
+                            </a>
+                            <p style="margin-top: 16px; font-size: 0.9rem; color: #666;">akash@stickydraft.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="modal-pane" id="pane-terms">
+                        <h3>Terms of Service</h3>
+                        <p><strong>Last Updated: January 22, 2026</strong></p>
+
+                        <h4>1. Acceptance of Terms</h4>
+                        <p>By using StickyDraft, you agree to these terms and conditions. If you do not agree, please do not use this service.</p>
+
+                        <h4>2. Service Description</h4>
+                        <p>StickyDraft is a free, browser-based note-taking application. We provide the platform; you control your notes.</p>
+
+                        <h4>3. User Responsibilities</h4>
+                        <ul>
+                            <li>You are responsible for the content you create and store</li>
+                            <li>Do not use StickyDraft for illegal, abusive, or harmful purposes</li>
+                            <li>Respect others' rights and privacy</li>
+                        </ul>
+
+                        <h4>4. Data Storage</h4>
+                        <p>Notes are stored locally in your browser. We do not have access to your data, nor do we collect, store, or transmit it to external servers.</p>
+
+                        <h4>5. Limitation of Liability</h4>
+                        <p>StickyDraft is provided "as-is" without warranties. We are not liable for data loss, service interruptions, or damages arising from use of this service.</p>
+
+                        <h4>6. Changes to Terms</h4>
+                        <p>We may update these terms at any time. Continued use of StickyDraft means you accept any changes.</p>
+
+                        <h4>7. Termination</h4>
+                        <p>We reserve the right to discontinue the service or restrict access if terms are violated.</p>
+
+                        <h4>8. Open Source License</h4>
+                        <p>StickyDraft is open source software. The source code is freely available on <a href="https://github.com/SaiAkashNeela/stickydraft.com" style="color: #2563EB; font-weight: 600; text-decoration: none;">GitHub</a>. You are free to use, modify, and distribute the software according to the terms of its open source license.</p>
+                    </div>
+
+                    <!-- Privacy -->
+                    <div class="modal-pane" id="pane-privacy">
+                        <h3>Privacy Policy</h3>
+                        <p><strong>Last Updated: January 22, 2026</strong></p>
+
+                        <h4>1. Overview</h4>
+                        <p>StickyDraft respects your privacy. This policy explains how we handle data when you use our app.</p>
+
+                        <h4>2. Data We Collect</h4>
+                        <p><strong>We collect minimal data:</strong></p>
+                        <ul>
+                            <li>Local browser storage only – your notes stay on your device</li>
+                            <li>No account creation required – no personal information collected</li>
+                            <li>No tracking cookies or analytics</li>
+                            <li>No third-party integrations that collect your data</li>
+                        </ul>
+
+                        <h4>3. Contact Form Data</h4>
+                        <p>If you submit the contact form, the email and message may be stored temporarily to process your inquiry. We will not use this data for marketing.</p>
+
+                        <h4>4. Browser Storage</h4>
+                        <p>Your notes are stored in your browser's local storage (IndexedDB or localStorage). Only you can access this data. Clearing browser storage will delete your notes.</p>
+
+                        <h4>5. Third-Party Services</h4>
+                        <p>StickyDraft does not use third-party analytics, ads, or tracking services. We do not share your data with anyone.</p>
+
+                        <h4>6. Security</h4>
+                        <p>Since data is stored locally, it's only as secure as your device. Use a strong password to protect your computer or device.</p>
+
+                        <h4>7. Changes to This Policy</h4>
+                        <p>We may update this privacy policy. Changes will be reflected here with an updated date. Your continued use means you accept changes.</p>
+
+                        <h4>8. Contact Us</h4>
+                        <p>Questions about privacy? Use the Contact tab to reach out, or visit our website for more info.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic (Modules) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

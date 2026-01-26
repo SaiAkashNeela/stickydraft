@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /app/
+Disallow: /temp/
+
+Sitemap: https://stickydraft.com/sitemap.xml
+
+# Crawl delay to prevent overload
+Crawl-delay: 1
+Request-rate: 1/1s
