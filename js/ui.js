@@ -27,10 +27,7 @@ export const ui = {
 
     checkMobile() {
         if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Check if already dismissed in this session
-            if (!sessionStorage.getItem('mobile_warning_dismissed')) {
-                this.showMobileWarning();
-            }
+            this.showMobileWarning();
         }
     },
 
@@ -60,7 +57,6 @@ export const ui = {
 
         backdrop.querySelector('.yes').addEventListener('click', (e) => {
             e.stopPropagation();
-            sessionStorage.setItem('mobile_warning_dismissed', 'true');
             backdrop.remove();
         });
 
