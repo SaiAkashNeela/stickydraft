@@ -601,13 +601,7 @@ export const ui = {
         backdrop.querySelector('.yes').addEventListener('click', (e) => {
             e.stopPropagation();
             // Reset everything
-            localStorage.clear();
-            store.data = {
-                tabs: [{ id: crypto.randomUUID(), title: 'Board 1', notes: [] }],
-                activeTabId: store.data.tabs[0].id,
-                theme: store.data.theme
-            };
-            store.save();
+            store.reset();
             this.renderTabs();
             this.renderBoard();
             this.showToast('Everything reset', 'ph-arrow-clockwise');
