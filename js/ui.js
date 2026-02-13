@@ -244,7 +244,9 @@ export const ui = {
         };
 
         titleInput.addEventListener('input', saveUpdate);
+        titleInput.addEventListener('blur', saveUpdate);
         contentDiv.addEventListener('input', saveUpdate);
+        contentDiv.addEventListener('blur', saveUpdate);
 
         new ResizeObserver(() => {
             store.updateNote(note.id, {
