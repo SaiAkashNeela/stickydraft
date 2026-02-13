@@ -22,6 +22,18 @@ export const store = {
                 if (!this.data.tabs || !Array.isArray(this.data.tabs)) this.data.tabs = [];
                 if (this.data.tabs.length === 0) this.createTab('My Board');
                 if (!this.data.theme) this.data.theme = 'light';
+
+                // Data Integrity Check: Ensure all notes have IDs
+                this.data.tabs.forEach(tab => {
+                    if (tab.notes && Array.isArray(tab.notes)) {
+                         tab.notes.forEach(note => {
+                             if (!note.id) note.id = crypto.randomUUID();
+                         });
+                    } else {
+                        tab.notes = [];
+                    }
+                });
+
             } catch (e) {
                 console.error('Data load error', e);
                 this.reset();
@@ -142,10 +154,18 @@ export const store = {
     },
 
     deleteNote(id) {
+        if (!id) return; // Safety check
         const tab = this.getActiveTab();
         if (!tab) return;
+        
+        // Ensure we are not deleting everything by accident
+        // (Though filter logic is generally safe, this guard handles the undefined id case explicitly)
+        const initialCount = tab.notes.length;
         tab.notes = tab.notes.filter(n => n.id !== id);
-        this.save();
+        
+        if (initialCount !== tab.notes.length) {
+            this.save();
+        }
     },
 
     moveNote(noteId, targetTabId) {

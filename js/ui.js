@@ -21,6 +21,50 @@ export const ui = {
         tc.className = 'toast-container';
         document.body.appendChild(tc);
         this.toastContainer = tc;
+
+        this.checkMobile();
+    },
+
+    checkMobile() {
+        if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // Check if already dismissed in this session
+            if (!sessionStorage.getItem('mobile_warning_dismissed')) {
+                this.showMobileWarning();
+            }
+        }
+    },
+
+    showMobileWarning() {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'delete-dialog-backdrop mobile-warning-backdrop';
+        backdrop.style.position = 'fixed';
+        backdrop.style.top = '0';
+        backdrop.style.left = '0';
+        backdrop.style.width = '100%';
+        backdrop.style.height = '100%';
+        backdrop.style.zIndex = '20000';
+        backdrop.style.background = 'rgba(0,0,0,0.85)';
+        backdrop.innerHTML = `
+            <div class="delete-card" style="max-width: 90%; width: 350px;">
+                <h4 style="color: #d97706; margin-bottom: 12px;"><i class="ph ph-warning"></i> Optimization Alert</h4>
+                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-primary); margin-bottom: 20px;">
+                    This site is not properly optimized for mobile devices yet.
+                    <br><br>
+                    We suggest using a <b>Laptop/Desktop</b> or a <b>Tablet</b> for the best experience.
+                </p>
+                <div class="confirm-btn-group" style="justify-content: center;">
+                    <button class="confirm-btn yes" style="background: var(--primary-color); width: 100%;">I Understand</button>
+                </div>
+            </div>
+        `;
+
+        backdrop.querySelector('.yes').addEventListener('click', (e) => {
+            e.stopPropagation();
+            sessionStorage.setItem('mobile_warning_dismissed', 'true');
+            backdrop.remove();
+        });
+
+        document.body.appendChild(backdrop);
     },
 
     applyTheme() {
@@ -218,7 +262,7 @@ export const ui = {
             const isTitle = e.target.closest('.note-title-input');
             const isMenu = e.target.closest('.menu-btn');
             const isFooter = e.target.closest('.note-footer-tip');
-            
+
             if (!isTitle && !isMenu && !isFooter) {
                 e.stopPropagation();
                 contentDiv.focus();
@@ -588,18 +632,18 @@ export const ui = {
 
     showBoardSelectionModal(action, noteId) {
         const tab = store.getActiveTab();
-        
+
         // Create modal container like help modal
         let modalOverlay = document.getElementById('board-selection-overlay');
         if (modalOverlay) modalOverlay.remove();
-        
+
         modalOverlay = document.createElement('div');
         modalOverlay.id = 'board-selection-overlay';
         modalOverlay.className = 'modal hidden';
-        
+
         // Filter to exclude current board
         const otherBoards = store.data.tabs.filter(t => t.id !== store.data.activeTabId);
-        
+
         const modalContent = document.createElement('div');
         modalContent.className = 'modal-content';
         modalContent.innerHTML = `
@@ -614,19 +658,19 @@ export const ui = {
                 `).join('')}
             </div>
         `;
-        
+
         modalOverlay.appendChild(modalContent);
         document.body.appendChild(modalOverlay);
-        
+
         // Show modal
         modalOverlay.classList.remove('hidden');
-        
+
         // Handle board selections
         const boardItems = modalOverlay.querySelectorAll('.board-item');
         boardItems.forEach(item => {
             item.addEventListener('click', () => {
                 const targetTabId = item.dataset.tabId;
-                
+
                 if (action === 'copy') {
                     store.copyNote(noteId, targetTabId);
                     this.showToast('Note copied', 'ph-copy');
@@ -635,12 +679,12 @@ export const ui = {
                     this.renderBoard();
                     this.showToast('Note moved', 'ph-arrow-right');
                 }
-                
+
                 modalOverlay.classList.add('hidden');
                 setTimeout(() => modalOverlay.remove(), 300);
             });
         });
-        
+
         // Close on background click
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
