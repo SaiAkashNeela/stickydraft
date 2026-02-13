@@ -225,7 +225,8 @@ body {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    flex-grow: 1;
+    flex-grow: 0;
+    min-width: 0;
     scrollbar-width: thin;
     align-items: center;
     padding-bottom: 6px;
@@ -313,6 +314,10 @@ body {
     flex-shrink: 0;
 }
 
+.add-tab-btn {
+    margin-right: auto;
+}
+
 .add-tab-btn:hover,
 .theme-toggle:hover {
     background: rgba(125, 125, 125, 0.1);
@@ -329,15 +334,24 @@ body {
 }
 
 @keyframes heartBeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
-    10%, 30% {
+
+    10%,
+    30% {
         transform: scale(0.9);
     }
-    20%, 40%, 60%, 80% {
+
+    20%,
+    40%,
+    60%,
+    80% {
         transform: scale(1.1);
     }
+
     50% {
         transform: scale(1);
     }
@@ -666,6 +680,7 @@ textarea.note-content {
     background: #F3F4F6;
     border-color: #111;
 }
+
 .menu-btn {
     background: transparent;
     border: none;
@@ -863,11 +878,13 @@ textarea.note-content {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
- 
 
-[data-theme="dark"] .menu-color-dot {
-    border-color: rgba(255, 255, 255, 0.2);
-}   transition: transform 0.2s;
+
+    [data-theme="dark"] .menu-color-dot {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    transition: transform 0.2s;
 }
 
 .menu-color-dot:hover {
@@ -981,19 +998,21 @@ textarea.note-content {
 /* Color Row Custom Add Button */
 .add-color-btn {
     width: 28px;
- 
 
-[data-theme="dark"] .add-color-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.5);
-}
 
-[data-theme="dark"] .add-color-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.8);
-}   height: 28px;
+    [data-theme="dark"] .add-color-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    [data-theme="dark"] .add-color-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    height: 28px;
     border-radius: 50%;
     border: 1px dashed #ccc;
     cursor: pointer;
@@ -1211,11 +1230,11 @@ textarea.note-content {
     flex: 1;
     overflow-y: auto;
     padding: 24px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(254,243,199,0.3) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(254, 243, 199, 0.3) 100%);
 }
 
 [data-theme="dark"] .modal-panes {
-    background: linear-gradient(135deg, rgba(31,41,55,0.8) 0%, rgba(17,24,39,0.9) 100%);
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
 }
 
 .modal-panes::-webkit-scrollbar {

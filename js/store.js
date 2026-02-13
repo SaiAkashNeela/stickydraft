@@ -34,6 +34,18 @@ export const store = {
                     }
                 });
 
+                // Data Integrity Check: Ensure Valid Active Tab
+                const activeTabExists = this.data.tabs.some(t => t.id === this.data.activeTabId);
+                if (!activeTabExists) {
+                    console.warn('Active tab ID not found in tabs, resetting to first tab');
+                    if (this.data.tabs.length > 0) {
+                        this.data.activeTabId = this.data.tabs[0].id;
+                        this.save();
+                    } else {
+                        this.reset();
+                    }
+                }
+
             } catch (e) {
                 console.error('Data load error', e);
                 this.reset();
